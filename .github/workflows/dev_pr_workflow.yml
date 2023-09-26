@@ -1,7 +1,7 @@
 name: development_workflow
 on:
   pull_request:
-    types: [opened]
+    types: [opened, synchronize]
 
 jobs:
   lint:
@@ -13,6 +13,7 @@ jobs:
 
   app_integration:
     runs-on: ubuntu-latest
+    needs: lint
     steps:
       - name: Running code integration with all apps related to forge atlassian
         run: |
@@ -20,6 +21,7 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+    needs: [lint, app_integration]
     steps:
       - name: Running tests against test deployment
         run: |
