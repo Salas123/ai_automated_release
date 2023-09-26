@@ -3,25 +3,24 @@ on:
   pull_request:
     types: [opened]
 
-  jobs:
-    lint:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Running linting job to ensure code follows formatting standards
-          run: |
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Running linting job to ensure code follows formatting standards
+        run: |
             echo "This job will be for linting"
 
-    app_integration:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Running code integration with all apps related to forge atlassian
-          run: |
+  app_integration:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Running code integration with all apps related to forge atlassian
+        run: |
             echo "This job will be for code integration"
-    
 
-    test:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Running tests against test deployment
-          run: |
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Running tests against test deployment
+        run: |
             echo "This job will be for testing deployment"
