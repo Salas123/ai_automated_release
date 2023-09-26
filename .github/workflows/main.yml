@@ -9,5 +9,20 @@ jobs:
   steps:
      - name: Running JIRA app to collect all ticket ids
        run: |
-          echo "this will be the first step in the job"
-    
+          echo "this will be the first job in the development pipeline"
+          
+ create_confluence_page:
+  runs-on: ubuntu-latest
+  needs: collect_jira_tickets
+  steps:
+     - name: Creating confluence app through Atlassian forge
+       run: |
+          echo "this will be the second job in the development pipeline"
+
+ notify_teams:
+  runs-on: ubuntu-latest
+  needs: [collect_jira_tickets,create_confluence_page]
+  steps:
+     - name: Notifying teams through communication channels
+       run: |
+          echo "this will be the third job in the development pipeline"
