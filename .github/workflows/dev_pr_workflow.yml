@@ -1,7 +1,7 @@
 name: development_workflow
-  on:
-    pull_request:
-      types: [opened]
+on:
+  pull_request:
+    types: [opened]
 
   jobs:
     lint:
