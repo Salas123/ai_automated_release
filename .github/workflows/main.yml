@@ -1,0 +1,13 @@
+name: development_create_release
+on:
+  release:
+    types:[created]
+
+jobs:
+  collect_jira_tickets:
+    runs-on: ubuntu-latest
+    steps:
+     - name: Running JIRA app to collect all ticket ids
+       run: |
+          echo "this will be the first step in the job"
+    
