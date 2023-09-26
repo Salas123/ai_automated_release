@@ -10,7 +10,7 @@ jobs:
      - name: Running JIRA app to collect all ticket ids
        run: |
           echo "this will be the first job in the development pipeline"
-          
+
  create_confluence_page:
   runs-on: ubuntu-latest
   needs: collect_jira_tickets
