@@ -1,7 +1,7 @@
 name: development_create_release
 on:
   release:
-    types:[created]
+    types: [created]
 
 jobs:
   collect_jira_tickets:
