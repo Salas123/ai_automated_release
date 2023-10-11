@@ -1,63 +1,74 @@
-import ForgeUI, { render, Fragment, Text, IssuePanel, Button, useProductContext} from '@forge/ui';
+import ForgeUI, {render, Fragment, Text, IssuePanel, Button, useProductContext, useState} from '@forge/ui';
 import api, {route} from "@forge/api";
 
+// how to implement...
+// 1. check context
+// 2. check release
+// 3. if not of the above, then
+// display button (if button pressed then trigger flag)
 
-async function startReleaseProcess (issueID) {
-
-    const response = await api.asUser().requestJira(route`/rest/api/2/issue/${issueID}`, {
+async function getAPI(...props){
+    const project = 'JSII'
+    console.log(`Issue ID: ${props[0].issueID}`)
+    const JQLResponse =  await api.asUser().requestJira(route`/rest/api/2/search?jql=project%20%3D%20${project}%20and%20parent=${props[0].issueID}`, {
         headers:{
             'Accept':'application/json'
         }
     });
 
+    const JQLPayload =  await JQLResponse.json();
+    const childIssues = JQLPayload['issues'];
 
-    const response2 = await api.asUser().requestJira(route `/rest/api/3/issueLinkType`, {
+    if(childIssues.length === 0){
+        console.log('No child issues found');
+        // TODO: add error handling
+    }
+
+    const issueResponse = await api.asUser().requestJira(route`/rest/api/2/issue/${props[0].issueID}`, {
         headers:{
-            'Accept': 'application/json'
+            'Accept':'application/json'
         }
     });
 
+    const issuePayload = await issueResponse.json();
+    console.log(issuePayload['fields']['fixVersions']);
 
-    const payload = await response.json();
-    console.log('Sub tasks Properties:')
-    console.log(payload['fields']['issuelinks']);
-    const fixVersionsArr = payload["fields"]["fixVersions"]
+}
+function checkValidContext(...props) {
 
-
-    let fixVersions = '';
-
-    for (let i = 0; i < fixVersionsArr.length; i++) {
-        let versionObj = fixVersionsArr[i];
-        fixVersions += versionObj["name"]
+    if (props[0].releaseFlag || props[0].issueType !== "Epic"){
+        // TODO: query fix versions and see if they have already been released
+        return false;
     }
-
-}
-
-const checkValidContext = (context) => {
-    if (context.platformContext.issueType !== "Epic")
-        return(
-            <Fragment>
-                <Text>This is not a valid issue to add this app, must be an "Epic"..</Text>
-                <Button text={"Start"} onClick={() => startReleaseProcess(context.platformContext.issueId)}/>
-            </Fragment>
-        );
     else
-        return(
-            <Fragment>
-                <Text>Release is ready to start deploy, press to start release process</Text>
-                <Button text={"Start"} onClick={() => startReleaseProcess(context.platformContext.issueId)}/>
-            </Fragment>
-        );
+        return true;
 
 }
-
 
 const App = () => {
+
+
     const context = useProductContext();
+    const [appState, setAppState] = useState({
+        releaseFlag: false,
+        issueType: context.platformContext.issueType,
+        issueID: context.platformContext.issueId,
+    });
+    const [contextState] = useState(checkValidContext(appState));
 
   return (
     <Fragment>
-        {checkValidContext(context)}
+        {contextState ?
+            (<Fragment>
+                <Text>This epic is ready for release, press below to start release process </Text>
+                <Button text={'Start'} onClick={async () => await getAPI(appState)}/>
+            </Fragment>):
+            (
+                <Fragment>
+                    <Text>This is not a valid issue or this epic has already been released</Text>
+                </Fragment>
+            )
+        }
     </Fragment>
   );
 };

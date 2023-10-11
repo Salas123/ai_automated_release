@@ -26,4 +26,4 @@ yarn-error.log*
 .idea/
 
 # secrets
-secrets.txt
+secrets.sh
