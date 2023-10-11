@@ -1,0 +1,25 @@
+modules:
+  jira:issuePanel:
+    - key: release-trigger-app-hello-world-panel
+      function: main
+      title: release-trigger-app
+      icon: https://developer.atlassian.com/platform/forge/images/icons/issue-panel-icon.svg
+  function:
+    - key: main
+      handler: index.run
+app:
+  id: ari:cloud:ecosystem::app/7e921518-0c33-431c-a02c-9aff6e8b9e02
+permissions:
+  scopes:
+    - read:jira-work
+    - read:field:jira
+    - read:epic:jira-software
+    - manage:jira-configuration
+    - manage:jira-project
+    - read:jira-user
+    - manage:jira-webhook
+  external:
+    fetch:
+      backend:
+        - auth.atlassian.com
+        - api.atlassian.com
