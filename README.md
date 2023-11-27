@@ -2,7 +2,7 @@
 
 
 ### Description 
-A DevOps app geared towards implementing automation into the software feature release process. Inspired by a QA perspective for limiting the manual steps needed before any testing is performed and allows that the developer to focus on the actual monitoring of test results and behavior of what is expected.
+A DevOps app geared towards implementing automation into the software feature release process. Inspired by a QA perspective for limiting the manual steps needed before any testing is performed and allows the QA tester to focus on the actual monitoring of test results and behavior of what is expected.
 
 
 ### Technologies Used:
