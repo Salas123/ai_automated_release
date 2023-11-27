@@ -57,7 +57,8 @@ async function triggerRelease({...props}){
 
     const ai = new AIHelper({
         apiKey: process.env.AIAPIKEY,
-        setReleaseStatus: props.setReleaseStatus
+        setReleaseStatus: props.setReleaseStatus,
+        aiAssistant: process.env.AIASSISTANTID
     });
 
     const summary = await ai.createSummary(PackageContent({
