@@ -1,0 +1,22 @@
+modules:
+  trigger:
+    - key: confluence-listener-app-hello-world
+      function: main
+      events:
+        - avi:confluence:created:page
+        - avi:confluence:updated:page
+        - avi:confluence:created:task
+        - avi:confluence:updated:task
+  function:
+    - key: main
+      handler: index.run
+app:
+  id: ari:cloud:ecosystem::app/ca975a3b-1585-4dfd-b06a-b94deb75623b
+permissions:
+  scopes:
+    - read:confluence-content.summary
+    - read:confluence-content.all
+  external:
+    fetch:
+      backend:
+        - us-west-2.aws.data.mongodb-api.com

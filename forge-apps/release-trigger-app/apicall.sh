@@ -1,4 +1,5 @@
-curl --request POST \
-  --url 'https://auth.atlassian.com/oauth/token' \
-  --header 'Content-Type: application/json' \
-  --data '{"grant_type": "authorization_code","client_id": "YreEtD8NInHf7dq8tFgnJ7ECKmpuY01q","client_secret": "ATOAH66--bqk64YIxq5z8qtHtu4y7Do6ATSLhlGpqWx0CKS2OElv8lJDWij3BYIYnNgZ05C6B326","code": "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxZTIxYzM1NS00MThiLTQwYzMtODYzOS1kYzVhNTdmZTdlOTciLCJzdWIiOiI3MDEyMTpjNjE2YTg3Ny1mOWY5LTQzM2QtYWM4Mi1hOTA4NjAwYjc4ZTUiLCJuYmYiOjE2OTY1NDc2MjIsImlzcyI6ImF1dGguYXRsYXNzaWFuLmNvbSIsImlhdCI6MTY5NjU0NzYyMiwiZXhwIjoxNjk2NTQ3OTIyLCJhdWQiOiJZcmVFdEQ4TkluSGY3ZHE4dEZnbko3RUNLbXB1WTAxcSIsImNsaWVudF9hdXRoX3R5cGUiOiJQT1NUIiwiaHR0cHM6Ly9pZC5hdGxhc3NpYW4uY29tL3ZlcmlmaWVkIjp0cnVlLCJodHRwczovL2lkLmF0bGFzc2lhbi5jb20vdWp0IjoiMWUyMWMzNTUtNDE4Yi00MGMzLTg2MzktZGM1YTU3ZmU3ZTk3Iiwic2NvcGUiOlsicmVhZDptZSJdLCJodHRwczovL2lkLmF0bGFzc2lhbi5jb20vYXRsX3Rva2VuX3R5cGUiOiJBVVRIX0NPREUiLCJodHRwczovL2lkLmF0bGFzc2lhbi5jb20vaGFzUmVkaXJlY3RVcmkiOnRydWUsImh0dHBzOi8vaWQuYXRsYXNzaWFuLmNvbS9zZXNzaW9uX2lkIjoiZmIzNzM1MWQtYTZkNi00ZTdiLWJmZGItNjlkOTRmMGMxZDE1IiwiaHR0cHM6Ly9pZC5hdGxhc3NpYW4uY29tL3Byb2Nlc3NSZWdpb24iOiJ1cy13ZXN0LTIifQ.XQDlXHOnF0GTju4Be90VBEWtt-dwrtmZi6u9ygotjtQ","redirect_uri": "https://jsii-cb.com"}'
+curl https://api.openai.com/v1/threads/thread_pZEo1StRcjWtInwHoJTA6kTO/messages \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer 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" \
+  -H "OpenAI-Beta: assistants=v1"
+
