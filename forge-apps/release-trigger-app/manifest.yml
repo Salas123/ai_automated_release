@@ -18,8 +18,12 @@ permissions:
     - manage:jira-project
     - read:jira-user
     - manage:jira-webhook
+    - storage:app
+    - write:page:confluence
   external:
     fetch:
       backend:
+        - api.openai.com
+        - us-west-2.aws.data.mongodb-api.com
         - auth.atlassian.com
         - api.atlassian.com
