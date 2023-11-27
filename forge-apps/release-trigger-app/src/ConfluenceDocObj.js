@@ -2,6 +2,7 @@ class ConfluenceDocObj{
     constructor({...props}) {
 
         this.childIssues = props.childIssues;
+        this.docSummary = props.docSummary;
         this.members = props.members;
         this.content = this.addToTable(this.childIssues);
         this.memberReviewers = this.addReviewers(this.members)
@@ -51,7 +52,7 @@ class ConfluenceDocObj{
                     "content": [
                         {
                             "type": "text",
-                            "text": "here is some some overview"
+                            "text": this.docSummary
                         }
                     ]
                 },

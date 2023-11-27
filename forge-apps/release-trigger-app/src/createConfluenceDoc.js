@@ -4,9 +4,10 @@ class CreateConfluenceDoc
 {
     constructor({...props}) {
         this.docTitle = props.docTitle;
+        this.docSummary = props.summary;
         this.childIssues = props.childIssues;
         this.members = props.members
-        this.confluenceDocObj = new ConfluenceDocObj({childIssues: props.childIssues, members: props.members});
+        this.confluenceDocObj = new ConfluenceDocObj({docSummary: this.docSummary, childIssues: props.childIssues, members: props.members});
 
     }
 
@@ -36,8 +37,11 @@ class CreateConfluenceDoc
             const payload = await response.json();
 
             //TODO: Add Error Handling
-            if(response.status !== 200)
-                console.log(`Error: response status received was ${response.status} and response message is ${payload}`)
+            if(response.status !== 200) {
+                console.log(`Error: response status received was ${response.status} and response message is `)
+                console.log(payload);
+            }
+
 
             const data = {
                 pageID: payload.id,
