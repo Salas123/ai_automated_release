@@ -2,33 +2,12 @@ import api from "@forge/api";
 
 class AIHelper{
     #AIAPIKey;
+    #aiAssistant;
     constructor({...props}) {
         this.#AIAPIKey = props.apiKey;
         this.setReleaseStatus = props.setReleaseStatus;
-        this.availableAssistants = this.getAnyExistingAssistants();
+        this.#aiAssistant = props.aiAssistant;
         this.runStatus = '';
-    }
-
-    async getAnyExistingAssistants(){
-        const response = await api.fetch( "https://api.openai.com/v1/assistants?order=desc&limit=20",{
-            headers:{
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${this.#AIAPIKey}`,
-                "OpenAI-Beta": "assistants=v1"
-            }
-        })
-
-        const payload = await response.json()
-
-        return await payload.data.map((assit) => {
-            let obj = {};
-            obj.id = assit.id;
-            obj.name = assit.name;
-            obj.description = assit.description;
-            obj.instructions = assit.instructions;
-
-            return obj;
-        })
     }
 
     timeoutFn(ms){
@@ -60,8 +39,6 @@ class AIHelper{
     }
 
     async createSummary(content){
-        this.setReleaseStatus('...retrieving AI assistants...');
-        const assistants = await this.availableAssistants;
 
         const runResponse = await api.fetch(`https://api.openai.com/v1/threads/runs`, {
             method: "POST",
@@ -71,7 +48,7 @@ class AIHelper{
                 "OpenAI-Beta": "assistants=v1",
             },
             body: JSON.stringify({
-            "assistant_id": assistants[1].id,
+            "assistant_id": this.#aiAssistant,
             "thread": {
                 "messages": [
                     {"role": "user", "content": content}
