@@ -43,18 +43,21 @@ class CreateConfluenceDoc
             }
 
 
-            const data = {
+            const confluenceData = {
                 pageID: payload.id,
                 pageTitle: payload.title,
                 pageStatus: payload.status,
                 spaceID: payload.spaceId,
-                revisions: 1,
-                numOfTasks: 3,
-                tasksCompleted: 0,
-                reviewers:this.members
+                revisions: 0,
+                tasks:{
+                    numOfTasks: 0,
+                    tasksCompleted: 0,
+                    reviewers:this.members,
+                    taskObjs: []
+                }
             }
 
-            resolve(data);
+            resolve(confluenceData);
         })
     }
 

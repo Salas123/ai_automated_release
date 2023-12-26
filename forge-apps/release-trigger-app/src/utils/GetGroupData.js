@@ -8,7 +8,7 @@ function GetGroupData({...props}){
             }
         });
 
-        console.log(`Response: ${groupsResponse.status} ${groupsResponse.statusText}`);
+        console.log(`Querying Group for Reviewers - Response: ${groupsResponse.status} ${groupsResponse.statusText}`);
         const groupPayload = await groupsResponse.json();
         /*
         * TODO: Add error handling on making sure only one group is returned

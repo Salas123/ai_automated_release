@@ -111,9 +111,10 @@ async function checkReleaseState({...props}){
     const fixVersions = props.fixVersions;
 
     const res = await FindInDB({query: fixVersions[0]});
+    console.log(res)
 
-    const hasBeenReleased = (res.document !== null);
-    console.log(`${fixVersions[0]} has been released: ${hasBeenReleased}`)
+    const hasBeenReleased = res.document !== null;
+    console.log(`Response from MongoDB: ${fixVersions[0]} has been released: ${hasBeenReleased}`)
     return hasBeenReleased;
 }
 

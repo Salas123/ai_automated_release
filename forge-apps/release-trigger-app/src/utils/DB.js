@@ -17,7 +17,8 @@ export function InsertIntoDB({...props}) {
                 })
             });
 
-        resolve(response.status);
+        const payload = await response.json()
+        resolve({...payload, statusCode: response.status});
     });
 }
 
@@ -41,9 +42,9 @@ export function FindInDB({...props}) {
                 })
             })
 
-        const payload = response.json();
+        const payload = await response.json();
 
-        resolve(payload)
+        resolve({...payload, statusCode: response.status})
     })
 }
 

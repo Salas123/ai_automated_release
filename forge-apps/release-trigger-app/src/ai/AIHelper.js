@@ -28,11 +28,11 @@ class AIHelper{
         const payload = await response.json();
         this.runStatus = payload.status;
 
-        console.log(`Counter: ${props.counter}`)
+        console.log(`Time elapsed: ${props.counter * 10}s..  Response status: ${response.status}...`);
 
         if(this.runStatus !== 'completed'){
             // 5 secs to poll again
-            await this.timeoutFn(5000);
+            await this.timeoutFn(10000);
             await this.pollRunStatus({...props, counter: props.counter + 1})
         }
 
@@ -56,7 +56,7 @@ class AIHelper{
             }
         })
     })
-        console.log(`Response status: ${runResponse.status}`)
+        console.log(`OpenAI creating run response status: ${runResponse.status}`)
         /*
         * TODO: Error handling on invalid status returned
         * */
@@ -75,7 +75,7 @@ class AIHelper{
                 "OpenAI-Beta": "assistants=v1",
             }
         })
-        console.log(`Messages Response: ${messageResponse.status}`)
+        console.log(`OpenAI Messages Response: ${messageResponse.status}`)
 
         const messsagePayload = await messageResponse.json();
 
