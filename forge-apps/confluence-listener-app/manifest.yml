@@ -19,4 +19,5 @@ permissions:
   external:
     fetch:
       backend:
+        - hooks.slack.com
         - us-west-2.aws.data.mongodb-api.com
