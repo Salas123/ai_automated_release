@@ -18,11 +18,11 @@ class DBConn {
             confluenceDoc: this.confluenceDetails,
         }
 
-        const statusCodeReturned = await InsertIntoDB({document: this.DBDoc});
+        const res = await InsertIntoDB({document: this.DBDoc});
 
-        if(statusCodeReturned !== 201){
+        if(res.statusCode !== 201){
             //TODO: Add Error Handling
-            console.log(`Error on doc submission to MongoDB: Status expected 200, instead got ${statusCodeReturned}`)
+            console.log(`Error on doc submission to MongoDB: Status expected 200, instead got ${res.statusCode}`)
         }
         else{
             console.log('Successful doc submission to MongoDB!')

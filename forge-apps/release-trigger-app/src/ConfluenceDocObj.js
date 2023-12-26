@@ -6,9 +6,6 @@ class ConfluenceDocObj{
         this.members = props.members;
         this.content = this.addToTable(this.childIssues);
         this.memberReviewers = this.addReviewers(this.members)
-        /*
-        *  TODO: Add tasks for each reviewer assigned to release
-        * */
 
         /*
         *  Doc obj created from ADF Builder on Atlassian:
