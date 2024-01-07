@@ -41,4 +41,11 @@ Feature Details in DB on MongoDB
 
 ![DB picture](https://github.com/Salas123/ai_automated_release/blob/develop/imgs/release-details-db.png?raw=true)
 
+Slack Notifications on Confluence Changes
+
+![Reviews completed picture](https://github.com/Salas123/ai_automated_release/blob/develop/imgs/confluence-tasks-marked-complete.png?raw=true)
+
+![slack-message-confluence-page-created](https://github.com/Salas123/ai_automated_release/blob/develop/imgs/slack-message-confluence-page-created.png?raw=true)
+
+![slack-message-tasks-competed.png](https://github.com/Salas123/ai_automated_release/blob/develop/imgs/slack-message-tasks-competed.png?raw=true)
 
